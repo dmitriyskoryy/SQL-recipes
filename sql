@@ -17,7 +17,7 @@ resumes = (
     {'title': 'Python Data Engineer', 'salary': 112000, 'workload': 'parttime', 'worker_id': 6},
 )
 
-# вывести сотрудников, которые входят в двойку лидеров по зарплате 
+# вывести сотрудников, которые входят в двойку лидеров по зарплате, учитывая режимы работы сотрудников (полный день, не полная занятость)
 select tab1.username, tab1.salary, liders_salary
 from
 	(select
@@ -28,3 +28,9 @@ from
 	from resumes as r
 	join workers as w on w.id = r.worker_id) as tab1
 where liders_salary < 3
+
+Результат:
+1 "Nuchoo"	300000	1
+2 "Picco"	250000	2
+3 "Michael"	180000	1
+4 "Pedro"	120000	2

@@ -34,3 +34,16 @@ where liders_salary < 3
 2 "Picco"	250000	2
 3 "Michael"	180000	1
 4 "Pedro"	120000	2
+
+# с помощью подзапросов, вывести сотрудников у которых зарплата больше, чем средняя по таблице
+select w.username, r.salary
+from resumes as r
+join workers as w on w.id = r.worker_id
+where r.salary >= (select avg(r.salary)::int as comp
+			from resumes as r
+			join workers as w on w.id = r.worker_id)
+
+Результат:
+1 "Michael"	180000
+2 "Picco"	250000
+3 "Nuchoo"	300000
